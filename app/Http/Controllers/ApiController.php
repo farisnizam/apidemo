@@ -19,4 +19,36 @@ class ApiController extends Controller
         $students->save();
         return response()->json($students);
     }
+
+    public function show()
+    {
+        $students = Student::all();
+        return response()->json($students);
+    }
+
+    public function showbyid($id)
+    {
+        $students = Student::find($id);
+        return response()->json($students);
+    }
+
+    public function updatebyid(Request $request, $id)
+    {
+        $students = Student::find($id);
+        $students->fname = $request->input('fname');
+        $students->lname = $request->input('lname');
+        $students->email = $request->input('email');
+        $students->password = $request->input('password');
+
+        $students->save();
+        return response()->json();
+    }
+
+    public function deletebyid(Request $request, $id)
+    {
+        $students = Student::find($id);
+        $students->delete();
+
+        return response()->json($students);
+    }
 }

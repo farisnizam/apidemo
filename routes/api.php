@@ -19,6 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/student', 'Apicontroller@create');
+Route::post('/student', 'ApiController@create');
+
+Route::get('/students', 'ApiController@show');
+
+Route::get('/student/{id}', 'ApiController@showbyid');
+
+Route::put('/studentupdate/{id}', 'ApiController@updatebyid');
+
+Route::delete('/studentdelete/{id}', 'ApiController@deletebyid');
 
 // Route::get("data", [dummyAPI::class, 'getData']);
