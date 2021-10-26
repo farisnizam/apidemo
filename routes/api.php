@@ -29,4 +29,6 @@ Route::put('/studentupdate/{id}', 'ApiController@updatebyid');
 
 Route::delete('/studentdelete/{id}', 'ApiController@deletebyid');
 
+Route::post('/login', 'ApiController@login');
+
 // Route::get("data", [dummyAPI::class, 'getData']);

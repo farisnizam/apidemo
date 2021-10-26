@@ -11,9 +11,9 @@ class ApiController extends Controller
     {
         $students = new Student();
 
-        $students->fname = $request->input('fname');
-        $students->lname = $request->input('lname');
+        $students->name = $request->input('name');
         $students->email = $request->input('email');
+        $students->phone_no = $request->input('phone_no');
         $students->password = $request->input('password');
 
         $students->save();
@@ -35,19 +35,29 @@ class ApiController extends Controller
     public function updatebyid(Request $request, $id)
     {
         $students = Student::find($id);
-        $students->fname = $request->input('fname');
-        $students->lname = $request->input('lname');
+        $students->name = $request->input('name');
         $students->email = $request->input('email');
+        $students->phone_no = $request->input('phone_no');
         $students->password = $request->input('password');
 
         $students->save();
-        return response()->json();
+        return response()->json($students);
     }
 
     public function deletebyid(Request $request, $id)
     {
         $students = Student::find($id);
         $students->delete();
+
+        return response()->json($students);
+    }
+
+    public function login(Request $request){
+
+        $username = $request->input('username');
+        $password = $request->input('password');
+
+        $students = Student::where("name",$username)->where("password",$password)->first();
 
         return response()->json($students);
     }
